@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4D8D30441755384A00E5A78E /* Build Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4D8D30451755384A00E5A78E /* Build configuration list for PBXAggregateTarget "Build Framework" */;
+			buildPhases = (
+				4D8D304A1755391C00E5A78E /* ShellScript */,
+			);
+			dependencies = (
+				4D8D30491755385100E5A78E /* PBXTargetDependency */,
+			);
+			name = "Build Framework";
+			productName = "Build Framework";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		4D558D0C1745A38C00E179A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0B1745A38C00E179A6 /* UIKit.framework */; };
 		4D558D0E1745A38C00E179A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0D1745A38C00E179A6 /* Foundation.framework */; };
@@ -19,12 +34,24 @@
 		4D558E84174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */; };
 		4D558E85174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */; };
 		4D558E88174AB33A00E179A6 /* NSObject+ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* NSObject+ESCObservableTest.m */; };
-		4D558E89174AB33A00E179A6 /* NSObject+ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* NSObject+ESCObservableTest.m */; };
 		4D558E8B174ABEA100E179A6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8A174ABEA100E179A6 /* libOCMock.a */; };
 		4D558E8D174AC1C500E179A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8C174AC1C500E179A6 /* QuartzCore.framework */; };
 		4D558E92174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
 		4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
+		4D8D30401755376A00E5A78E /* ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8D303E175536F600E5A78E /* ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D8D30411755376D00E5A78E /* NSObject+ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E82174AB2FE00E179A6 /* NSObject+ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D8D30421755378E00E5A78E /* ESCObserversProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E90174C50C900E179A6 /* ESCObserversProxy.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4D8D30481755385100E5A78E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D558D001745A38C00E179A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D558D2B1745A41C00E179A6;
+			remoteInfo = ESCObservable;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4D558D2A1745A41C00E179A6 /* CopyFiles */ = {
@@ -58,6 +85,7 @@
 		4D558E8C174AC1C500E179A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4D558E90174C50C900E179A6 /* ESCObserversProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObserversProxy.h; sourceTree = "<group>"; };
 		4D558E91174C50C900E179A6 /* ESCObserversProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCObserversProxy.m; sourceTree = "<group>"; };
+		4D8D303E175536F600E5A78E /* ESCObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObservable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +153,7 @@
 				4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */,
 				4D558E90174C50C900E179A6 /* ESCObserversProxy.h */,
 				4D558E91174C50C900E179A6 /* ESCObserversProxy.m */,
+				4D8D303E175536F600E5A78E /* ESCObservable.h */,
 			);
 			path = ESCObservable;
 			sourceTree = "<group>";
@@ -143,6 +172,19 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4D8D303F1755375A00E5A78E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D8D30401755376A00E5A78E /* ESCObservable.h in Headers */,
+				4D8D30411755376D00E5A78E /* NSObject+ESCObservable.h in Headers */,
+				4D8D30421755378E00E5A78E /* ESCObserversProxy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		4D558D071745A38C00E179A6 /* Unit Tests */ = {
@@ -169,6 +211,8 @@
 				4D558D281745A41C00E179A6 /* Sources */,
 				4D558D291745A41C00E179A6 /* Frameworks */,
 				4D558D2A1745A41C00E179A6 /* CopyFiles */,
+				4D8D303F1755375A00E5A78E /* Headers */,
+				4D8D30431755381200E5A78E /* Prepare Framework */,
 			);
 			buildRules = (
 			);
@@ -203,6 +247,7 @@
 			targets = (
 				4D558D071745A38C00E179A6 /* Unit Tests */,
 				4D558D2B1745A41C00E179A6 /* ESCObservable */,
+				4D8D30441755384A00E5A78E /* Build Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +264,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D8D30431755381200E5A78E /* Prepare Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		4D8D304A1755391C00E5A78E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D558D041745A38C00E179A6 /* Sources */ = {
@@ -237,12 +312,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D558E85174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */,
-				4D558E89174AB33A00E179A6 /* NSObject+ESCObservableTest.m in Sources */,
 				4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4D8D30491755385100E5A78E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D558D2B1745A41C00E179A6 /* ESCObservable */;
+			targetProxy = 4D8D30481755385100E5A78E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4D558D231745A38C00E179A6 /* Debug */ = {
@@ -354,24 +436,46 @@
 		4D558D361745A41C00E179A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/ESCObservable.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCObservable/ESCObservable-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		4D558D371745A41C00E179A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/ESCObservable.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCObservable/ESCObservable-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		4D8D30461755384A00E5A78E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4D8D30471755384A00E5A78E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -394,12 +498,22 @@
 				4D558D271745A38C00E179A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D558D351745A41C00E179A6 /* Build configuration list for PBXNativeTarget "ESCObservable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D558D361745A41C00E179A6 /* Debug */,
 				4D558D371745A41C00E179A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4D8D30451755384A00E5A78E /* Build configuration list for PBXAggregateTarget "Build Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D8D30461755384A00E5A78E /* Debug */,
+				4D8D30471755384A00E5A78E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

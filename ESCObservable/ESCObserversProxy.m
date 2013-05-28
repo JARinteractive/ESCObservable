@@ -1,6 +1,5 @@
 #import "ESCObserversProxy.h"
 #import <objc/runtime.h>
-#import <objc/Protocol.h>
 
 @interface ESCStandardObserverWeakWrapper : NSObject
 
