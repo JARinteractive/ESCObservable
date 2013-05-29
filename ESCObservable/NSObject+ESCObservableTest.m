@@ -115,6 +115,17 @@
 	[self.mockObserver1 verify];
 }
 
+- (void)testMessageWithoutParametersIsCalledOnceOnObserver {
+	__block NSInteger callCount = 0;
+	[[[self.mockObserver1 stub] andDo:^(NSInvocation *invocation) {
+		callCount++;
+	}] testMessageWithNoParameters];
+	
+	[self.testObject sendTestMessageWithNoParameters];
+	
+	GHAssertEquals(callCount, 1, nil);
+}
+
 - (void)testMessageWithoutParametersIsCalledOnObserverMultipleTimes {
 	[[self.mockObserver1 expect] testMessageWithNoParameters];
 	[self.testObject sendTestMessageWithNoParameters];

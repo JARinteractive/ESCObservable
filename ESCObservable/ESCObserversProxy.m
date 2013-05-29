@@ -68,18 +68,28 @@
 - (void)escAddWrappedObserver:(ESCStandardObserverWeakWrapper *)wrappedObserver {
 	if (!self.escObservers) {
 		self.escObservers = @[wrappedObserver];
+	} else {
+		self.escObservers = [self.escObservers arrayByAddingObject:wrappedObserver];
 	}
-	self.escObservers = [self.escObservers arrayByAddingObject:wrappedObserver];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
 	struct objc_method_description description;
+	
+	if ([self.escObserverProtocols count] == 0) {
+		[[NSException exceptionWithName:@"ESCObservableException"
+								 reason:[NSString stringWithFormat:@"This observable has not registered and protocols.  Cannot find method signature for %@", NSStringFromSelector(sel)]
+							   userInfo:nil] raise];
+		return nil;
+	}
+	
 	for (Protocol *protocol in self.escObserverProtocols) {
 		description = protocol_getMethodDescription(protocol, sel, NO, YES);
 		if (description.name == NULL) {
 			description = protocol_getMethodDescription(protocol, sel, YES, YES);
 		}
 	}
+	
 	if (description.name == NULL) {
 		[[NSException exceptionWithName:@"ESCObservableException"
 								 reason:[NSString stringWithFormat:@"Attempted to call method (%@) not available on any registered observer protocol", NSStringFromSelector(sel)]
