@@ -4,15 +4,15 @@
 
 @optional
 - (void)escAddObserver:(id)observer;
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector;
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector forwardToSelector:(SEL)forwardToSelector;
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector;
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector;
 
 @end
 
 @protocol ESCObservableInternal
 
 @optional
-- (id)escObservers;
+- (id)escNotifier;
 - (void)escRegisterObserverProtocol:(Protocol *)observerProtocol;
 
 @end

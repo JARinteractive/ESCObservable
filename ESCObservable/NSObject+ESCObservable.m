@@ -29,7 +29,7 @@
 	objc_setAssociatedObject(self, ESCObserversProxyKey, observersProxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (id)escObservers {
+- (id)escNotifier {
 	return self.escObserversProxy;
 }
 
@@ -37,12 +37,12 @@
 	[self.escObserversProxy escAddObserver:observer];
 }
 
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector {
-	[self.escObserversProxy escAddObserver:observer ofSelector:selector];
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector {
+	[self.escObserversProxy escAddObserver:observer forSelector:selector];
 }
 
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector forwardToSelector:(SEL)forwardToSelector {
-	[self.escObserversProxy escAddObserver:observer ofSelector:selector forwardToSelector:forwardToSelector];
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardToSelector {
+	[self.escObserversProxy escAddObserver:observer forSelector:selector forwardingToSelector:forwardToSelector];
 }
 
 @end

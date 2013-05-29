@@ -56,23 +56,23 @@
 }
 
 - (void)sendTestMessageWithNoParameters {
-	[[self escObservers] testMessageWithNoParameters];
+	[[self escNotifier] testMessageWithNoParameters];
 }
 
 - (void)sendTestOptionalMessageWithNoParameters {
-	[[self escObservers] testOptionalMessageWithNoParameters];
+	[[self escNotifier] testOptionalMessageWithNoParameters];
 }
 
 - (void)sendTestMessageWithStringParameter:(NSString *)string primitiveParameter:(NSInteger)integer {
-	[[self escObservers] testMessageWithStringParameter:string primitiveParameter:integer];
+	[[self escNotifier] testMessageWithStringParameter:string primitiveParameter:integer];
 }
 
 - (void)sendTestMessageOnOtherObserverProtocol {
-	[[self escObservers] testMessageOnOtherObserverProtocol];
+	[[self escNotifier] testMessageOnOtherObserverProtocol];
 }
 
 - (void)sendInvalidMessage {
-	[[self escObservers] shouldRunOnMainThread];
+	[[self escNotifier] shouldRunOnMainThread];
 }
 
 @end
@@ -227,7 +227,7 @@
 
 - (void)testMessageWithParametersIsCalledOnObserverRegisteredOnlyForMessageWithParameters {
 	id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
-	[self.testObject escAddObserver:mockObserver ofSelector:@selector(testMessageWithStringParameter:primitiveParameter:)];
+	[self.testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithStringParameter:primitiveParameter:)];
 	
 	NSString *expectedString = @"The Answer";
 	NSInteger expectedInteger = 42;
@@ -240,7 +240,7 @@
 
 - (void)testMessageWithNoParametersIsNotCalledOnObserverRegisteredOnlyForMessageWithParameters {
 	id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
-	[self.testObject escAddObserver:mockObserver ofSelector:@selector(testMessageWithNoParameters)];
+	[self.testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters)];
 	
 	NSString *expectedString = @"The Answer";
 	NSInteger expectedInteger = 42;
@@ -251,7 +251,7 @@
 
 - (void)testForwardedSelectorCalledOnObserverForMessageWithParameters {
 	id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestForwardingSelectors)];
-	[self.testObject escAddObserver:mockObserver ofSelector:@selector(testMessageWithStringParameter:primitiveParameter:) forwardToSelector:@selector(forwardedString:integer:)];
+	[self.testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithStringParameter:primitiveParameter:) forwardingToSelector:@selector(forwardedString:integer:)];
 	
 	NSString *expectedString = @"The Answer";
 	NSInteger expectedInteger = 42;
@@ -264,9 +264,9 @@
 
 - (void)testAllObserversNotifiedWhenAddedUsingDifferentMethods {
 	id mockForwardingObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestForwardingSelectors)];
-	[self.testObject escAddObserver:mockForwardingObserver ofSelector:@selector(testMessageWithStringParameter:primitiveParameter:) forwardToSelector:@selector(forwardedString:integer:)];
+	[self.testObject escAddObserver:mockForwardingObserver forSelector:@selector(testMessageWithStringParameter:primitiveParameter:) forwardingToSelector:@selector(forwardedString:integer:)];
 	id mockSelectorObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
-	[self.testObject escAddObserver:mockSelectorObserver ofSelector:@selector(testMessageWithStringParameter:primitiveParameter:)];
+	[self.testObject escAddObserver:mockSelectorObserver forSelector:@selector(testMessageWithStringParameter:primitiveParameter:)];
 	id mockStandardObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
 	[self.testObject escAddObserver:mockStandardObserver];
 	

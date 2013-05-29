@@ -57,11 +57,11 @@
 	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer]];
 }
 
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector {
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector {
 	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector]];
 }
 
-- (void)escAddObserver:(id)observer ofSelector:(SEL)selector forwardToSelector:(SEL)observerSelector {
+- (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)observerSelector {
 	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
 }
 
@@ -78,7 +78,7 @@
 	
 	if ([self.escObserverProtocols count] == 0) {
 		[[NSException exceptionWithName:@"ESCObservableException"
-								 reason:[NSString stringWithFormat:@"This observable has not registered and protocols.  Cannot find method signature for %@", NSStringFromSelector(sel)]
+								 reason:[NSString stringWithFormat:@"This observable has not registered any protocols.  Cannot find method signature for %@", NSStringFromSelector(sel)]
 							   userInfo:nil] raise];
 		return nil;
 	}
