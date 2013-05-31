@@ -4,45 +4,53 @@
 
 #define ESCObserversProxyKey @"ESCObserversProxyKey"
 
-@interface NSObject(ESCObservableInternal)<ESCObservable, ESCObservableInternal>
-
-@property (nonatomic) ESCObserversProxy *escObserversProxy;
-
-@end
-
-@implementation NSObject(ESCObservable)
-
-- (void)escRegisterObserverProtocol:(Protocol *)observerProtocol {
-	[self.escObserversProxy escRegisterObserverProtocol:observerProtocol];
-}
-
-- (ESCObserversProxy *)escObserversProxy {
+static ESCObserversProxy *escObserversProxy(id self) {
 	ESCObserversProxy *observersProxy = objc_getAssociatedObject(self, ESCObserversProxyKey);
 	if (!observersProxy) {
 		observersProxy = [ESCObserversProxy alloc];
-		[self setEscObserversProxy:observersProxy];
+		objc_setAssociatedObject(self, ESCObserversProxyKey, observersProxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	}
 	return observersProxy;
 }
 
-- (void)setEscObserversProxy:(ESCObserversProxy *)observersProxy {
-	objc_setAssociatedObject(self, ESCObserversProxyKey, observersProxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+static void escRegisterObserverProtocol(id self, SEL _cmd, Protocol *observerProtocol) {
+	[escObserversProxy(self) escRegisterObserverProtocol:observerProtocol];
 }
 
-- (id)escNotifier {
-	return self.escObserversProxy;
+static id escNotifier(id self, SEL _cmd) {
+	return escObserversProxy(self);
 }
 
-- (void)escAddObserver:(id)observer {
-	[self.escObserversProxy escAddObserver:observer];
+static void escAddObserver(id self, SEL _cmd, id observer) {
+	[escObserversProxy(self) escAddObserver:observer];
 }
 
-- (void)escAddObserver:(id)observer forSelector:(SEL)selector {
-	[self.escObserversProxy escAddObserver:observer forSelector:selector];
+static void escAddObserverForSelector(id self, SEL _cmd, id observer, SEL selector) {
+	[escObserversProxy(self) escAddObserver:observer forSelector:selector];
 }
 
-- (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardToSelector {
-	[self.escObserversProxy escAddObserver:observer forSelector:selector forwardingToSelector:forwardToSelector];
+static void escAddObserverForSelectorForwardingToSelector(id self, SEL _cmd, id observer, SEL selector, SEL forwardToSelector) {
+	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:forwardToSelector];
 }
 
-@end
+void escMakeClassObservable(Class aClass) {
+	if (aClass != NULL) {
+		class_addMethod(aClass, sel_registerName("escRegisterObserverProtocol:"), (IMP)escRegisterObserverProtocol, "v@:@");
+		class_addMethod(aClass, sel_registerName("escNotifier"), (IMP)escNotifier, "@@:");
+		class_addMethod(aClass, sel_registerName("escAddObserver:"), (IMP)escAddObserver, "v@:@");
+		class_addMethod(aClass, sel_registerName("escAddObserver:forSelector:"), (IMP)escAddObserverForSelector, "v@:@:");
+		class_addMethod(aClass, sel_registerName("escAddObserver:forSelector:forwardingToSelector:"), (IMP)escAddObserverForSelectorForwardingToSelector, "v@:@::");
+	}
+}
+
+__attribute__((constructor)) static void escObservableRuntimeSetup() {
+	escMakeClassObservable([NSObject class]);
+	escMakeClassObservable(objc_getClass("OCMockObject"));
+	
+	Class ocMockObjectClass = objc_getClass("OCMockObject");
+	if (ocMockObjectClass != NULL) {
+		NSLog(@"Found OCMockObject");
+	} else {
+		NSLog(@"Could Not Find OCMockObject");
+	}
+}
