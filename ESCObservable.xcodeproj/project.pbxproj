@@ -31,15 +31,14 @@
 		4D558D221745A38C00E179A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D558D211745A38C00E179A6 /* Default-568h@2x.png */; };
 		4D558D2D1745A41C00E179A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0D1745A38C00E179A6 /* Foundation.framework */; };
 		4D558D601745DA8400E179A6 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D5E1745DA8400E179A6 /* GHUnitIOS.framework */; };
-		4D558E84174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */; };
-		4D558E85174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */; };
-		4D558E88174AB33A00E179A6 /* NSObject+ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* NSObject+ESCObservableTest.m */; };
+		4D558E84174AB2FE00E179A6 /* ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* ESCObservable.m */; };
+		4D558E85174AB2FE00E179A6 /* ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* ESCObservable.m */; };
+		4D558E88174AB33A00E179A6 /* ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* ESCObservableTest.m */; };
 		4D558E8B174ABEA100E179A6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8A174ABEA100E179A6 /* libOCMock.a */; };
 		4D558E8D174AC1C500E179A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8C174AC1C500E179A6 /* QuartzCore.framework */; };
 		4D558E92174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
 		4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
-		4D8D30401755376A00E5A78E /* ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8D303E175536F600E5A78E /* ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D8D30411755376D00E5A78E /* NSObject+ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E82174AB2FE00E179A6 /* NSObject+ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D8D30411755376D00E5A78E /* ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E82174AB2FE00E179A6 /* ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D8D30421755378E00E5A78E /* ESCObserversProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E90174C50C900E179A6 /* ESCObserversProxy.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
@@ -78,14 +77,13 @@
 		4D558D211745A38C00E179A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4D558D2C1745A41C00E179A6 /* libESCObservable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libESCObservable.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D558D5E1745DA8400E179A6 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = testingFrameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
-		4D558E82174AB2FE00E179A6 /* NSObject+ESCObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ESCObservable.h"; sourceTree = "<group>"; };
-		4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ESCObservable.m"; sourceTree = "<group>"; };
-		4D558E87174AB33A00E179A6 /* NSObject+ESCObservableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ESCObservableTest.m"; sourceTree = "<group>"; };
+		4D558E82174AB2FE00E179A6 /* ESCObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObservable.h; sourceTree = "<group>"; };
+		4D558E83174AB2FE00E179A6 /* ESCObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCObservable.m; sourceTree = "<group>"; };
+		4D558E87174AB33A00E179A6 /* ESCObservableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCObservableTest.m; sourceTree = "<group>"; };
 		4D558E8A174ABEA100E179A6 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = testingFrameworks/OCMock/libOCMock.a; sourceTree = "<group>"; };
 		4D558E8C174AC1C500E179A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4D558E90174C50C900E179A6 /* ESCObserversProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObserversProxy.h; sourceTree = "<group>"; };
 		4D558E91174C50C900E179A6 /* ESCObserversProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCObserversProxy.m; sourceTree = "<group>"; };
-		4D8D303E175536F600E5A78E /* ESCObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObservable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,12 +146,11 @@
 			isa = PBXGroup;
 			children = (
 				4D558D121745A38C00E179A6 /* Supporting Files */,
-				4D558E87174AB33A00E179A6 /* NSObject+ESCObservableTest.m */,
-				4D558E82174AB2FE00E179A6 /* NSObject+ESCObservable.h */,
-				4D558E83174AB2FE00E179A6 /* NSObject+ESCObservable.m */,
+				4D558E87174AB33A00E179A6 /* ESCObservableTest.m */,
+				4D558E82174AB2FE00E179A6 /* ESCObservable.h */,
+				4D558E83174AB2FE00E179A6 /* ESCObservable.m */,
 				4D558E90174C50C900E179A6 /* ESCObserversProxy.h */,
 				4D558E91174C50C900E179A6 /* ESCObserversProxy.m */,
-				4D8D303E175536F600E5A78E /* ESCObservable.h */,
 			);
 			path = ESCObservable;
 			sourceTree = "<group>";
@@ -178,8 +175,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D8D30401755376A00E5A78E /* ESCObservable.h in Headers */,
-				4D8D30411755376D00E5A78E /* NSObject+ESCObservable.h in Headers */,
+				4D8D30411755376D00E5A78E /* ESCObservable.h in Headers */,
 				4D8D30421755378E00E5A78E /* ESCObserversProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,8 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D558D181745A38C00E179A6 /* main.m in Sources */,
-				4D558E84174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */,
-				4D558E88174AB33A00E179A6 /* NSObject+ESCObservableTest.m in Sources */,
+				4D558E84174AB2FE00E179A6 /* ESCObservable.m in Sources */,
+				4D558E88174AB33A00E179A6 /* ESCObservableTest.m in Sources */,
 				4D558E92174C50C900E179A6 /* ESCObserversProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D558E85174AB2FE00E179A6 /* NSObject+ESCObservable.m in Sources */,
+				4D558E85174AB2FE00E179A6 /* ESCObservable.m in Sources */,
 				4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

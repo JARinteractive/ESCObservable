@@ -1,4 +1,4 @@
-#import "NSObject+ESCObservable.h"
+#import "ESCObservable.h"
 #import "ESCObserversProxy.h"
 #import <objc/runtime.h>
 
@@ -35,22 +35,15 @@ static void escAddObserverForSelectorForwardingToSelector(id self, SEL _cmd, id 
 
 void escMakeClassObservable(Class aClass) {
 	if (aClass != NULL) {
-		class_addMethod(aClass, sel_registerName("escRegisterObserverProtocol:"), (IMP)escRegisterObserverProtocol, "v@:@");
-		class_addMethod(aClass, sel_registerName("escNotifier"), (IMP)escNotifier, "@@:");
-		class_addMethod(aClass, sel_registerName("escAddObserver:"), (IMP)escAddObserver, "v@:@");
-		class_addMethod(aClass, sel_registerName("escAddObserver:forSelector:"), (IMP)escAddObserverForSelector, "v@:@:");
-		class_addMethod(aClass, sel_registerName("escAddObserver:forSelector:forwardingToSelector:"), (IMP)escAddObserverForSelectorForwardingToSelector, "v@:@::");
+		class_addMethod(aClass, @selector(escRegisterObserverProtocol:), (IMP)escRegisterObserverProtocol, "v@:@");
+		class_addMethod(aClass, @selector(escNotifier), (IMP)escNotifier, "@@:");
+		class_addMethod(aClass, @selector(escAddObserver:), (IMP)escAddObserver, "v@:@");
+		class_addMethod(aClass, @selector(escAddObserver:forSelector:), (IMP)escAddObserverForSelector, "v@:@:");
+		class_addMethod(aClass, @selector(escAddObserver:forSelector:forwardingToSelector:), (IMP)escAddObserverForSelectorForwardingToSelector, "v@:@::");
 	}
 }
 
 __attribute__((constructor)) static void escObservableRuntimeSetup() {
 	escMakeClassObservable([NSObject class]);
 	escMakeClassObservable(objc_getClass("OCMockObject"));
-	
-	Class ocMockObjectClass = objc_getClass("OCMockObject");
-	if (ocMockObjectClass != NULL) {
-		NSLog(@"Found OCMockObject");
-	} else {
-		NSLog(@"Could Not Find OCMockObject");
-	}
 }

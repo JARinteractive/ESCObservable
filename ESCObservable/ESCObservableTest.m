@@ -1,5 +1,5 @@
 #import <GHUnitIOS/GHUnit.h>
-#import "NSObject+ESCObservable.h"
+#import "ESCObservable.h"
 #import "OCMock.h"
 
 #define ESCObservableTestObserverDeallocNotification @"ESCObservableTestObserverDeallocNotification"
