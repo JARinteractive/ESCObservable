@@ -22,11 +22,11 @@ static id escNotifier(id self, SEL _cmd) {
 }
 
 static void escAddObserver(id self, SEL _cmd, id observer) {
-	[escObserversProxy(self) escAddObserver:observer];
+    [escObserversProxy(self) escAddObserver:observer];
 }
 
 static void escAddObserverForSelector(id self, SEL _cmd, id observer, SEL selector) {
-	[escObserversProxy(self) escAddObserver:observer forSelector:selector];
+	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:nil];
 }
 
 static void escAddObserverForSelectorForwardingToSelector(id self, SEL _cmd, id observer, SEL selector, SEL forwardToSelector) {

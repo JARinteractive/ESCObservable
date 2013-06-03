@@ -19,13 +19,6 @@
 	return wrapper;
 }
 
-+ (id)weakWrapperWithTarget:(id)target selector:(SEL)selector {
-	ESCStandardObserverWeakWrapper *wrapper = [[self alloc] init];
-	wrapper.target = target;
-	wrapper.selector = selector;
-	return wrapper;
-}
-
 + (id)weakWrapperWithTarget:(id)target selector:(SEL)selector forwardToSelector:(SEL)forwardToSelector {
 	ESCStandardObserverWeakWrapper *wrapper = [[self alloc] init];
 	wrapper.target = target;
@@ -57,12 +50,9 @@
 	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer]];
 }
 
-- (void)escAddObserver:(id)observer forSelector:(SEL)selector {
-	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector]];
-}
-
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)observerSelector {
-	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
+    [self descriptionForSelector:selector];
+    [self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
 }
 
 - (void)escAddWrappedObserver:(ESCStandardObserverWeakWrapper *)wrappedObserver {
@@ -73,30 +63,31 @@
 	}
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-	struct objc_method_description description;
-	
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
 	if ([self.escObserverProtocols count] == 0) {
-		[[NSException exceptionWithName:@"ESCObservableException"
-								 reason:[NSString stringWithFormat:@"This observable has not registered any protocols.  Cannot find method signature for %@", NSStringFromSelector(sel)]
-							   userInfo:nil] raise];
-		return nil;
+        [self raiseExceptionWithMessage:[NSString stringWithFormat:@"This observable has not registered any protocols.  Cannot find method signature for %@", NSStringFromSelector(selector)]];
 	}
-	
-	for (Protocol *protocol in self.escObserverProtocols) {
-		description = protocol_getMethodDescription(protocol, sel, NO, YES);
-		if (description.name == NULL) {
-			description = protocol_getMethodDescription(protocol, sel, YES, YES);
-		}
-	}
-	
-	if (description.name == NULL) {
-		[[NSException exceptionWithName:@"ESCObservableException"
-								 reason:[NSString stringWithFormat:@"Attempted to call method (%@) not available on any registered observer protocol", NSStringFromSelector(sel)]
-							   userInfo:nil] raise];
-		return nil;
-	}
+
+    struct objc_method_description description = [self descriptionForSelector:selector];
 	return [NSMethodSignature signatureWithObjCTypes:description.types];
+}
+
+- (struct objc_method_description)descriptionForSelector:(SEL)selector {
+    struct objc_method_description description;
+    for (Protocol *protocol in self.escObserverProtocols) {
+        description = protocol_getMethodDescription(protocol, selector, NO, YES);
+        if (description.name == NULL) {
+            description = protocol_getMethodDescription(protocol, selector, YES, YES);
+        }
+    }
+    if (description.name == NULL) {
+        [self raiseExceptionWithMessage:[NSString stringWithFormat:@"Selector (%@) does not exist on any registered observer protocol", NSStringFromSelector(selector)]];
+    }
+    return description;
+}
+
+- (void)raiseExceptionWithMessage:(NSString *)message {
+    [[NSException exceptionWithName:@"ESCObservableException" reason:message userInfo:nil] raise];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {

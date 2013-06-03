@@ -2,8 +2,6 @@
 #import "ESCObservable.h"
 #import "OCMock.h"
 
-#define ESCObservableTestObserverDeallocNotification @"ESCObservableTestObserverDeallocNotification"
-
 #pragma mark - Protocols for Observers to implement
 
 @protocol ESCObservableTestObserver
@@ -281,6 +279,32 @@
 	[mockStandardObserver verify];
 	[mockSelectorObserver verify];
 	[mockForwardingObserver verify];
+}
+
+- (void)testWhenRegisteringSelectorThatIsNotOnTheObserverProtocolThenARuntimeExceptionIsThrown {
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    NSException *actualException = nil;
+    @try {
+        [self.testObject escAddObserver:mockObserver forSelector:@selector(description)];
+    }
+    @catch (NSException *exception) {
+        actualException = exception;
+    }
+
+    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+}
+
+- (void)testWhenRegisteringSelectorThatIsNotOnTheObserverProtocolForwardedToSelectorThenARuntimeExceptionIsThrown {
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    NSException *actualException = nil;
+    @try {
+        [self.testObject escAddObserver:mockObserver forSelector:@selector(description) forwardingToSelector:@selector(testMessageWithNoParameters)];
+    }
+    @catch (NSException *exception) {
+        actualException = exception;
+    }
+
+    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
 }
 
 @end
