@@ -307,4 +307,17 @@
     GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
 }
 
+- (void)testWhenForwardingToNilSelectorAnExceptionIsThrown {
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    NSException *actualException = nil;
+    @try {
+        [self.testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:nil];
+    }
+    @catch (NSException *exception) {
+        actualException = exception;
+    }
+
+    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+}
+
 @end

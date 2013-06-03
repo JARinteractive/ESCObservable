@@ -51,6 +51,9 @@
 }
 
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)observerSelector {
+    if (observerSelector == NULL) {
+        [self raiseExceptionWithMessage:@"Attempt to forward selector to NULL"];
+    }
     [self descriptionForSelector:selector];
     [self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
 }
@@ -95,16 +98,14 @@
 	for (ESCStandardObserverWeakWrapper *observer in self.escObservers) {
 		if (!observer.target) {
 			cleanUpObservers = YES;
-		} else if ((observer.selector == nil || sel_isEqual(observer.selector, invocation.selector)) && ([observer.target respondsToSelector:invocation.selector] || observer.forwardToSelector != nil)) {
-			if (observer.forwardToSelector != nil) {
-				SEL originalSelector = invocation.selector;
-				invocation.selector = observer.forwardToSelector;
-				[invocation invokeWithTarget:observer.target];
-				invocation.selector = originalSelector;
-			} else {
-				[invocation invokeWithTarget:observer.target];
-			}
-		}
+		} else if (observer.selector == nil && [observer.target respondsToSelector:invocation.selector]) {
+            [invocation invokeWithTarget:observer.target];
+		} else if (sel_isEqual(observer.selector, invocation.selector)) {
+            SEL originalSelector = invocation.selector;
+            invocation.selector = observer.forwardToSelector;
+            [invocation invokeWithTarget:observer.target];
+            invocation.selector = originalSelector;
+        }
 	}
 	if (cleanUpObservers) {
 		[self cleanUpObservers];

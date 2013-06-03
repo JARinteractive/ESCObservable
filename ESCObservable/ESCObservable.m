@@ -26,7 +26,7 @@ static void escAddObserver(id self, SEL _cmd, id observer) {
 }
 
 static void escAddObserverForSelector(id self, SEL _cmd, id observer, SEL selector) {
-	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:nil];
+	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:selector];
 }
 
 static void escAddObserverForSelectorForwardingToSelector(id self, SEL _cmd, id observer, SEL selector, SEL forwardToSelector) {
