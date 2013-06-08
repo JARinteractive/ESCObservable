@@ -24,6 +24,9 @@ static id escNotifier(id self, SEL _cmd) {
 static void escAddObserver(id self, SEL _cmd, id observer) {
     [escObserversProxy(self) escAddObserver:observer];
 }
+static void escRemoveObserver(id self, SEL _cmd, id observer) {
+    [escObserversProxy(self) escRemoveObserver:observer];
+}
 
 static void escAddObserverForSelector(id self, SEL _cmd, id observer, SEL selector) {
 	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:selector];
@@ -38,6 +41,7 @@ void escMakeClassObservable(Class aClass) {
 		class_addMethod(aClass, @selector(escRegisterObserverProtocol:), (IMP)escRegisterObserverProtocol, "v@:@");
 		class_addMethod(aClass, @selector(escNotifier), (IMP)escNotifier, "@@:");
 		class_addMethod(aClass, @selector(escAddObserver:), (IMP)escAddObserver, "v@:@");
+		class_addMethod(aClass, @selector(escRemoveObserver:), (IMP)escRemoveObserver, "v@:@");
 		class_addMethod(aClass, @selector(escAddObserver:forSelector:), (IMP)escAddObserverForSelector, "v@:@:");
 		class_addMethod(aClass, @selector(escAddObserver:forSelector:forwardingToSelector:), (IMP)escAddObserverForSelectorForwardingToSelector, "v@:@::");
 	}

@@ -66,6 +66,16 @@
 	}
 }
 
+- (void)escRemoveObserver:(id)observer {
+	NSMutableArray *observers = [NSMutableArray arrayWithArray:self.escObservers];
+	for (ESCStandardObserverWeakWrapper *observerWrapper in self.escObservers) {
+		if (observerWrapper.target == observer) {
+			[observers removeObject:observerWrapper];
+		}
+	}
+	self.escObservers = observers;
+}
+
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
 	if ([self.escObserverProtocols count] == 0) {
         [self raiseExceptionWithMessage:[NSString stringWithFormat:@"This observable has not registered any protocols.  Cannot find method signature for %@", NSStringFromSelector(selector)]];

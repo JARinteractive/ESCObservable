@@ -316,8 +316,21 @@
     @catch (NSException *exception) {
         actualException = exception;
     }
-
+	
     GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+}
+
+- (void)testRemoveObserverRemovesEveryRegistrationOfObserver {
+	[[self.mockObserver1 reject] testMessageWithNoParameters];
+	[[self.mockObserver1 reject] testOptionalMessageWithNoParameters];
+	
+	[self.testObject escRemoveObserver:self.mockObserver1];
+	[self.testObject sendTestMessageWithNoParameters];
+	
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters)];
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(testOptionalMessageWithNoParameters)];
+	[self.testObject escRemoveObserver:self.mockObserver1];
+	[self.testObject sendTestMessageWithNoParameters];
 }
 
 @end
