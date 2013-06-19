@@ -333,4 +333,32 @@
 	[self.testObject sendTestMessageWithNoParameters];
 }
 
+- (void)testRemoveObserverForSelectorRemovesObserverRegisteredWithSpecificSelector {
+	[self.testObject escRemoveObserver:self.mockObserver1];
+	[[self.mockObserver1 reject] testMessageWithNoParameters];
+	[[self.mockObserver1 expect] testOptionalMessageWithNoParameters];
+	
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters)];
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(testOptionalMessageWithNoParameters)];
+	[self.testObject escRemoveObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters)];
+	
+	[self.testObject sendTestMessageWithNoParameters];
+	
+	[self.mockObserver1 verify];
+}
+
+- (void)testRemoveObserverForSelectorRemovesObserverRegisteredWithSpecificSelectorAndForwarding {
+	[self.testObject escRemoveObserver:self.mockObserver1];
+	[[self.mockObserver1 expect] testMessageWithNoParameters];
+	[[self.mockObserver1 reject] testOptionalMessageWithNoParameters];
+	
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters)];
+	[self.testObject escAddObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(testOptionalMessageWithNoParameters)];
+	[self.testObject escRemoveObserver:self.mockObserver1 forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(testOptionalMessageWithNoParameters)];
+	
+	[self.testObject sendTestMessageWithNoParameters];
+	
+	[self.mockObserver1 verify];
+}
+
 @end

@@ -32,8 +32,16 @@ static void escAddObserverForSelector(id self, SEL _cmd, id observer, SEL select
 	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:selector];
 }
 
+static void escRemoveObserverForSelector(id self, SEL _cmd, id observer, SEL selector) {
+	[escObserversProxy(self) escRemoveObserver:observer forSelector:selector forwardingToSelector:selector];
+}
+
 static void escAddObserverForSelectorForwardingToSelector(id self, SEL _cmd, id observer, SEL selector, SEL forwardToSelector) {
 	[escObserversProxy(self) escAddObserver:observer forSelector:selector forwardingToSelector:forwardToSelector];
+}
+
+static void escRemoveObserverForSelectorForwardingToSelector(id self, SEL _cmd, id observer, SEL selector, SEL forwardToSelector) {
+	[escObserversProxy(self) escRemoveObserver:observer forSelector:selector forwardingToSelector:forwardToSelector];
 }
 
 void escMakeClassObservable(Class aClass) {
@@ -43,7 +51,9 @@ void escMakeClassObservable(Class aClass) {
 		class_addMethod(aClass, @selector(escAddObserver:), (IMP)escAddObserver, "v@:@");
 		class_addMethod(aClass, @selector(escRemoveObserver:), (IMP)escRemoveObserver, "v@:@");
 		class_addMethod(aClass, @selector(escAddObserver:forSelector:), (IMP)escAddObserverForSelector, "v@:@:");
+		class_addMethod(aClass, @selector(escRemoveObserver:forSelector:), (IMP)escRemoveObserverForSelector, "v@:@:");
 		class_addMethod(aClass, @selector(escAddObserver:forSelector:forwardingToSelector:), (IMP)escAddObserverForSelectorForwardingToSelector, "v@:@::");
+		class_addMethod(aClass, @selector(escRemoveObserver:forSelector:forwardingToSelector:), (IMP)escRemoveObserverForSelectorForwardingToSelector, "v@:@::");
 	}
 }
 

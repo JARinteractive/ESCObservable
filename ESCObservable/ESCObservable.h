@@ -9,7 +9,9 @@ ESCSuppressIncompleteImplementationWarnings
 - (void)escRemoveObserver:(id)observer;
 
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector;
+- (void)escRemoveObserver:(id)observer forSelector:(SEL)selector;
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector;
+- (void)escRemoveObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector;
 
 @end
 

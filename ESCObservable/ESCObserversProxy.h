@@ -6,6 +6,8 @@
 - (void)escRemoveObserver:(id)observer;
 
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector;
+- (void)escRemoveObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector;
+
 - (void)escRegisterObserverProtocol:(Protocol *)observerProtocol;
 
 @end

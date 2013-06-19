@@ -1,7 +1,7 @@
 #import "ESCObserversProxy.h"
 #import <objc/runtime.h>
 
-@interface ESCStandardObserverWeakWrapper : NSObject
+@interface ESCObserverWeakWrapper : NSObject
 
 + (id)weakWrapperWithTarget:(id)target;
 
@@ -11,16 +11,16 @@
 
 @end
 
-@implementation ESCStandardObserverWeakWrapper
+@implementation ESCObserverWeakWrapper
 
 + (id)weakWrapperWithTarget:(id)target {
-	ESCStandardObserverWeakWrapper *wrapper = [[self alloc] init];
+	ESCObserverWeakWrapper *wrapper = [[self alloc] init];
 	wrapper.target = target;
 	return wrapper;
 }
 
 + (id)weakWrapperWithTarget:(id)target selector:(SEL)selector forwardToSelector:(SEL)forwardToSelector {
-	ESCStandardObserverWeakWrapper *wrapper = [[self alloc] init];
+	ESCObserverWeakWrapper *wrapper = [[self alloc] init];
 	wrapper.target = target;
 	wrapper.selector = selector;
 	wrapper.forwardToSelector = forwardToSelector;
@@ -47,7 +47,7 @@
 }
 
 - (void)escAddObserver:(id)observer {
-	[self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer]];
+	[self escAddWrappedObserver:[ESCObserverWeakWrapper weakWrapperWithTarget:observer]];
 }
 
 - (void)escAddObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)observerSelector {
@@ -55,10 +55,10 @@
         [self raiseExceptionWithMessage:@"Attempt to forward selector to NULL"];
     }
     [self descriptionForSelector:selector];
-    [self escAddWrappedObserver:[ESCStandardObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
+    [self escAddWrappedObserver:[ESCObserverWeakWrapper weakWrapperWithTarget:observer selector:selector forwardToSelector:observerSelector]];
 }
 
-- (void)escAddWrappedObserver:(ESCStandardObserverWeakWrapper *)wrappedObserver {
+- (void)escAddWrappedObserver:(ESCObserverWeakWrapper *)wrappedObserver {
 	if (!self.escObservers) {
 		self.escObservers = @[wrappedObserver];
 	} else {
@@ -68,8 +68,18 @@
 
 - (void)escRemoveObserver:(id)observer {
 	NSMutableArray *observers = [NSMutableArray arrayWithArray:self.escObservers];
-	for (ESCStandardObserverWeakWrapper *observerWrapper in self.escObservers) {
+	for (ESCObserverWeakWrapper *observerWrapper in self.escObservers) {
 		if (observerWrapper.target == observer) {
+			[observers removeObject:observerWrapper];
+		}
+	}
+	self.escObservers = observers;
+}
+
+- (void)escRemoveObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector {
+	NSMutableArray *observers = [NSMutableArray arrayWithArray:self.escObservers];
+	for (ESCObserverWeakWrapper *observerWrapper in self.escObservers) {
+		if (observerWrapper.target == observer && sel_isEqual(observerWrapper.selector, selector) && sel_isEqual(observerWrapper.forwardToSelector, forwardSelector)) {
 			[observers removeObject:observerWrapper];
 		}
 	}
@@ -105,7 +115,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
 	BOOL cleanUpObservers = NO;
-	for (ESCStandardObserverWeakWrapper *observer in self.escObservers) {
+	for (ESCObserverWeakWrapper *observer in self.escObservers) {
 		if (!observer.target) {
 			cleanUpObservers = YES;
 		} else if (observer.selector == nil && [observer.target respondsToSelector:invocation.selector]) {
@@ -124,7 +134,7 @@
 
 - (void)cleanUpObservers {
 	NSArray *validObservers = @[];
-	for (ESCStandardObserverWeakWrapper *observer in self.escObservers) {
+	for (ESCObserverWeakWrapper *observer in self.escObservers) {
 		if (observer.target != nil) {
 			validObservers = [validObservers arrayByAddingObject:observer];
 		}
