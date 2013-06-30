@@ -1,6 +1,6 @@
-#import <GHUnitIOS/GHUnit.h>
 #import "ESCObservable.h"
 #import "OCMock.h"
+#import <XCTest/XCTest.h>
 
 #pragma mark - Protocols for Observers to implement
 
@@ -70,14 +70,14 @@
 }
 
 - (void)sendInvalidMessage {
-	[[self escNotifier] shouldRunOnMainThread];
+	[[self escNotifier] sendInvalidMessage];
 }
 
 @end
 
 #pragma mark - Tests
 
-@interface NSObject_ESCObservableTest : GHTestCase<ESCObservable, ESCObservableInternal>
+@interface NSObject_ESCObservableTest : XCTestCase<ESCObservable, ESCObservableInternal>
 
 @property (nonatomic) ESCTestObservable *testObject;
 @property (nonatomic) id mockObserver1;
@@ -121,7 +121,7 @@
 	
 	[self.testObject sendTestMessageWithNoParameters];
 	
-	GHAssertEquals(callCount, 1, nil);
+	XCTAssertEquals(callCount, 1, @"");
 }
 
 - (void)testMessageWithoutParametersIsCalledOnObserverMultipleTimes {
@@ -170,7 +170,7 @@
 		actualException = exception;
 	}
 	
-	GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+	XCTAssertEqualObjects(actualException.name, @"ESCObservableException", @"");
 }
 
 - (void)testMessageWithParametersIsCalledOnObservers {
@@ -194,7 +194,7 @@
 		mockObserverWeakReference = mockObserver;
 	}
 
-	GHAssertNil(mockObserverWeakReference, nil);
+	XCTAssertNil(mockObserverWeakReference, @"");
 }
 
 - (void)testObserverDoesNotSlowDownDueToHoldingManyInvalidObservers {
@@ -220,7 +220,7 @@
 	
 	NSTimeInterval testTimeInterval = [testEndDate timeIntervalSinceDate:testStartDate];
 	
-	GHAssertTrue(testTimeInterval < (referenceTimeInterval * 2.0), nil);
+	XCTAssertTrue(testTimeInterval < (referenceTimeInterval * 2.0), @"");
 }
 
 - (void)testMessageWithParametersIsCalledOnObserverRegisteredOnlyForMessageWithParameters {
@@ -291,7 +291,7 @@
         actualException = exception;
     }
 
-    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+    XCTAssertEqualObjects(actualException.name, @"ESCObservableException", @"");
 }
 
 - (void)testWhenRegisteringSelectorThatIsNotOnTheObserverProtocolForwardedToSelectorThenARuntimeExceptionIsThrown {
@@ -304,7 +304,7 @@
         actualException = exception;
     }
 
-    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+    XCTAssertEqualObjects(actualException.name, @"ESCObservableException", @"");
 }
 
 - (void)testWhenForwardingToNilSelectorAnExceptionIsThrown {
@@ -317,7 +317,7 @@
         actualException = exception;
     }
 	
-    GHAssertEqualStrings(actualException.name, @"ESCObservableException", nil);
+    XCTAssertEqualObjects(actualException.name, @"ESCObservableException", @"");
 }
 
 - (void)testRemoveObserverRemovesEveryRegistrationOfObserver {

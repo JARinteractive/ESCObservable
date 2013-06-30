@@ -22,28 +22,30 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4D558D0C1745A38C00E179A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0B1745A38C00E179A6 /* UIKit.framework */; };
-		4D558D0E1745A38C00E179A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0D1745A38C00E179A6 /* Foundation.framework */; };
-		4D558D101745A38C00E179A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0F1745A38C00E179A6 /* CoreGraphics.framework */; };
-		4D558D181745A38C00E179A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558D171745A38C00E179A6 /* main.m */; };
-		4D558D1E1745A38C00E179A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D558D1D1745A38C00E179A6 /* Default.png */; };
-		4D558D201745A38C00E179A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D558D1F1745A38C00E179A6 /* Default@2x.png */; };
-		4D558D221745A38C00E179A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D558D211745A38C00E179A6 /* Default-568h@2x.png */; };
 		4D558D2D1745A41C00E179A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0D1745A38C00E179A6 /* Foundation.framework */; };
-		4D558D601745DA8400E179A6 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D5E1745DA8400E179A6 /* GHUnitIOS.framework */; };
-		4D558E84174AB2FE00E179A6 /* ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* ESCObservable.m */; };
 		4D558E85174AB2FE00E179A6 /* ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* ESCObservable.m */; };
-		4D558E88174AB33A00E179A6 /* ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* ESCObservableTest.m */; };
-		4D558E8B174ABEA100E179A6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8A174ABEA100E179A6 /* libOCMock.a */; };
-		4D558E8D174AC1C500E179A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8C174AC1C500E179A6 /* QuartzCore.framework */; };
-		4D558E92174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
 		4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
 		4D8D30411755376D00E5A78E /* ESCObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E82174AB2FE00E179A6 /* ESCObservable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D8D30421755378E00E5A78E /* ESCObserversProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D558E90174C50C900E179A6 /* ESCObserversProxy.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4D978D59177FCC9E00D80885 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D978D58177FCC9E00D80885 /* XCTest.framework */; };
+		4D978D5A177FCC9E00D80885 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0D1745A38C00E179A6 /* Foundation.framework */; };
+		4D978D5B177FCC9E00D80885 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558D0B1745A38C00E179A6 /* UIKit.framework */; };
+		4D978D61177FCC9E00D80885 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D978D5F177FCC9E00D80885 /* InfoPlist.strings */; };
+		4D978D6A177FCD0000D80885 /* ESCObservableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E87174AB33A00E179A6 /* ESCObservableTest.m */; };
+		4D978D6B177FCD0600D80885 /* ESCObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E83174AB2FE00E179A6 /* ESCObservable.m */; };
+		4D978D6C177FCD0600D80885 /* ESCObserversProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D558E91174C50C900E179A6 /* ESCObserversProxy.m */; };
+		4D978D6D177FCDA600D80885 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D558E8A174ABEA100E179A6 /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4D8D30481755385100E5A78E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D558D001745A38C00E179A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D558D2B1745A41C00E179A6;
+			remoteInfo = ESCObservable;
+		};
+		4D978D65177FCC9E00D80885 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D558D001745A38C00E179A6 /* Project object */;
 			proxyType = 1;
@@ -65,7 +67,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4D558D081745A38C00E179A6 /* Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D558D0B1745A38C00E179A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D558D0D1745A38C00E179A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4D558D0F1745A38C00E179A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,27 +85,30 @@
 		4D558E8C174AC1C500E179A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4D558E90174C50C900E179A6 /* ESCObserversProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCObserversProxy.h; sourceTree = "<group>"; };
 		4D558E91174C50C900E179A6 /* ESCObserversProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCObserversProxy.m; sourceTree = "<group>"; };
+		4D978D57177FCC9E00D80885 /* ESCObservable Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ESCObservable Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D978D58177FCC9E00D80885 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4D978D5E177FCC9E00D80885 /* ESCObservable Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ESCObservable Tests-Info.plist"; sourceTree = "<group>"; };
+		4D978D60177FCC9E00D80885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4D978D64177FCC9E00D80885 /* ESCObservable Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ESCObservable Tests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4D558D051745A38C00E179A6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D558E8D174AC1C500E179A6 /* QuartzCore.framework in Frameworks */,
-				4D558D0C1745A38C00E179A6 /* UIKit.framework in Frameworks */,
-				4D558D0E1745A38C00E179A6 /* Foundation.framework in Frameworks */,
-				4D558D101745A38C00E179A6 /* CoreGraphics.framework in Frameworks */,
-				4D558D601745DA8400E179A6 /* GHUnitIOS.framework in Frameworks */,
-				4D558E8B174ABEA100E179A6 /* libOCMock.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4D558D291745A41C00E179A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4D558D2D1745A41C00E179A6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D978D54177FCC9E00D80885 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D978D6D177FCDA600D80885 /* libOCMock.a in Frameworks */,
+				4D978D59177FCC9E00D80885 /* XCTest.framework in Frameworks */,
+				4D978D5B177FCC9E00D80885 /* UIKit.framework in Frameworks */,
+				4D978D5A177FCC9E00D80885 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				4D558D111745A38C00E179A6 /* ESCObservable */,
+				4D978D5C177FCC9E00D80885 /* ESCObservable Tests */,
 				4D558D0A1745A38C00E179A6 /* Frameworks */,
 				4D558D091745A38C00E179A6 /* Products */,
 			);
@@ -123,8 +128,8 @@
 		4D558D091745A38C00E179A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D558D081745A38C00E179A6 /* Unit Tests.app */,
 				4D558D2C1745A41C00E179A6 /* libESCObservable.a */,
+				4D978D57177FCC9E00D80885 /* ESCObservable Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				4D558D0B1745A38C00E179A6 /* UIKit.framework */,
 				4D558D0D1745A38C00E179A6 /* Foundation.framework */,
 				4D558D0F1745A38C00E179A6 /* CoreGraphics.framework */,
+				4D978D58177FCC9E00D80885 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,6 +174,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4D978D5C177FCC9E00D80885 /* ESCObservable Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4D978D5D177FCC9E00D80885 /* Supporting Files */,
+			);
+			path = "ESCObservable Tests";
+			sourceTree = "<group>";
+		};
+		4D978D5D177FCC9E00D80885 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4D978D5E177FCC9E00D80885 /* ESCObservable Tests-Info.plist */,
+				4D978D5F177FCC9E00D80885 /* InfoPlist.strings */,
+				4D978D64177FCC9E00D80885 /* ESCObservable Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -183,23 +207,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4D558D071745A38C00E179A6 /* Unit Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4D558D251745A38C00E179A6 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
-			buildPhases = (
-				4D558D041745A38C00E179A6 /* Sources */,
-				4D558D051745A38C00E179A6 /* Frameworks */,
-				4D558D061745A38C00E179A6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Unit Tests";
-			productName = ESCObservable;
-			productReference = 4D558D081745A38C00E179A6 /* Unit Tests.app */;
-			productType = "com.apple.product-type.application";
-		};
 		4D558D2B1745A41C00E179A6 /* ESCObservable */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D558D351745A41C00E179A6 /* Build configuration list for PBXNativeTarget "ESCObservable" */;
@@ -219,6 +226,24 @@
 			productReference = 4D558D2C1745A41C00E179A6 /* libESCObservable.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		4D978D56177FCC9E00D80885 /* ESCObservable Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D978D69177FCC9E00D80885 /* Build configuration list for PBXNativeTarget "ESCObservable Tests" */;
+			buildPhases = (
+				4D978D53177FCC9E00D80885 /* Sources */,
+				4D978D54177FCC9E00D80885 /* Frameworks */,
+				4D978D55177FCC9E00D80885 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D978D66177FCC9E00D80885 /* PBXTargetDependency */,
+			);
+			name = "ESCObservable Tests";
+			productName = "ESCObservable Tests";
+			productReference = 4D978D57177FCC9E00D80885 /* ESCObservable Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -228,6 +253,11 @@
 				CLASSPREFIX = ESC;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Asynchrony;
+				TargetAttributes = {
+					4D978D56177FCC9E00D80885 = {
+						TestTargetID = 4D558D2B1745A41C00E179A6;
+					};
+				};
 			};
 			buildConfigurationList = 4D558D031745A38C00E179A6 /* Build configuration list for PBXProject "ESCObservable" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -241,21 +271,19 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D558D071745A38C00E179A6 /* Unit Tests */,
 				4D558D2B1745A41C00E179A6 /* ESCObservable */,
 				4D8D30441755384A00E5A78E /* Build Framework */,
+				4D978D56177FCC9E00D80885 /* ESCObservable Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4D558D061745A38C00E179A6 /* Resources */ = {
+		4D978D55177FCC9E00D80885 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D558D1E1745A38C00E179A6 /* Default.png in Resources */,
-				4D558D201745A38C00E179A6 /* Default@2x.png in Resources */,
-				4D558D221745A38C00E179A6 /* Default-568h@2x.png in Resources */,
+				4D978D61177FCC9E00D80885 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,23 +320,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4D558D041745A38C00E179A6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D558D181745A38C00E179A6 /* main.m in Sources */,
-				4D558E84174AB2FE00E179A6 /* ESCObservable.m in Sources */,
-				4D558E88174AB33A00E179A6 /* ESCObservableTest.m in Sources */,
-				4D558E92174C50C900E179A6 /* ESCObserversProxy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4D558D281745A41C00E179A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4D558E85174AB2FE00E179A6 /* ESCObservable.m in Sources */,
 				4D558E93174C50C900E179A6 /* ESCObserversProxy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D978D53177FCC9E00D80885 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D978D6A177FCD0000D80885 /* ESCObservableTest.m in Sources */,
+				4D978D6C177FCD0600D80885 /* ESCObserversProxy.m in Sources */,
+				4D978D6B177FCD0600D80885 /* ESCObservable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +347,23 @@
 			target = 4D558D2B1745A41C00E179A6 /* ESCObservable */;
 			targetProxy = 4D8D30481755385100E5A78E /* PBXContainerItemProxy */;
 		};
+		4D978D66177FCC9E00D80885 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D558D2B1745A41C00E179A6 /* ESCObservable */;
+			targetProxy = 4D978D65177FCC9E00D80885 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4D978D5F177FCC9E00D80885 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D978D60177FCC9E00D80885 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4D558D231745A38C00E179A6 /* Debug */ = {
@@ -378,54 +421,6 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4D558D261745A38C00E179A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/testingFrameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ESCObservable/ESCObservable-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/testingFrameworks/OCMock\"/**";
-				INFOPLIST_FILE = "ESCObservable/ESCObservable-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/testingFrameworks/OCMock\"",
-				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		4D558D271745A38C00E179A6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/testingFrameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ESCObservable/ESCObservable-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/testingFrameworks/OCMock\"/**";
-				INFOPLIST_FILE = "ESCObservable/ESCObservable-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/testingFrameworks/OCMock\"",
-				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -487,6 +482,81 @@
 			};
 			name = Release;
 		};
+		4D978D67177FCC9E00D80885 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ESCObservable Tests/ESCObservable Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/testingFrameworks/OCMock/**";
+				INFOPLIST_FILE = "ESCObservable Tests/ESCObservable Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/testingFrameworks/OCMock/",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		4D978D68177FCC9E00D80885 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ESCObservable Tests/ESCObservable Tests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/testingFrameworks/OCMock/**";
+				INFOPLIST_FILE = "ESCObservable Tests/ESCObservable Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/testingFrameworks/OCMock/",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -495,15 +565,6 @@
 			buildConfigurations = (
 				4D558D231745A38C00E179A6 /* Debug */,
 				4D558D241745A38C00E179A6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4D558D251745A38C00E179A6 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4D558D261745A38C00E179A6 /* Debug */,
-				4D558D271745A38C00E179A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -525,6 +586,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		4D978D69177FCC9E00D80885 /* Build configuration list for PBXNativeTarget "ESCObservable Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D978D67177FCC9E00D80885 /* Debug */,
+				4D978D68177FCC9E00D80885 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
