@@ -16,7 +16,7 @@ Using ESCObservable
 
 Project Setup
 -------------
-ESCObservable can be imported as a subproject in Xcode or as a .framework.  The .framework can be build using the ```Build Framework``` target.
+ESCObservable can be imported as a subproject in Xcode or as a .framework.  The .framework can be built using the ```Build Framework``` target.
 
 In the build settings under ```Other Linker Flags``` add ```-ObjC``` and ```-all_load```.
 
