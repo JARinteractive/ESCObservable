@@ -39,10 +39,10 @@
 @implementation ESCObserversProxy
 
 - (void)escRegisterObserverProtocol:(Protocol *)observerProtocol {
-	if (!self.escObserverProtocols) {
-		self.escObserverProtocols = @[observerProtocol];
-	} else {
+	if (self.escObserverProtocols) {
 		self.escObserverProtocols = [self.escObserverProtocols arrayByAddingObject:observerProtocol];
+	} else {
+		self.escObserverProtocols = @[observerProtocol];
 	}
 }
 
@@ -102,6 +102,9 @@
         if (description.name == NULL) {
             description = protocol_getMethodDescription(protocol, selector, YES, YES);
         }
+        if (description.name) {
+            break;
+        }
     }
     if (description.name == NULL) {
         [self raiseExceptionWithMessage:[NSString stringWithFormat:@"Selector (%@) does not exist on any registered observer protocol", NSStringFromSelector(selector)]];
@@ -118,7 +121,7 @@
 	for (ESCObserverWeakWrapper *observer in self.escObservers) {
 		if (!observer.target) {
 			cleanUpObservers = YES;
-		} else if (observer.selector == nil && [observer.target respondsToSelector:invocation.selector]) {
+		} else if (observer.selector == NULL && [observer.target respondsToSelector:invocation.selector]) {
             [invocation invokeWithTarget:observer.target];
 		} else if (sel_isEqual(observer.selector, invocation.selector)) {
             SEL originalSelector = invocation.selector;

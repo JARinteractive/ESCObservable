@@ -25,6 +25,7 @@
 @protocol ESCObservableTestForwardingSelectors
 
 - (void)forwardedString:(NSString *)string integer:(NSInteger)integer;
+- (void)forwardedMessage;
 
 @end
 
@@ -152,13 +153,41 @@
 	[self.mockObserver1 verify];
 }
 
-- (void)testMessageOnOtherObserverProtocolIsCalled {
+- (void)testMessagesOnMultipleRegisteredProtocolsAreCalled {
 	[self.testObject escRegisterObserverProtocol:@protocol(ESCObservableTestOtherObserver)];
 	[[self.mockOtherObserver expect] testMessageOnOtherObserverProtocol];
 	
 	[self.testObject sendTestMessageOnOtherObserverProtocol];
 	
 	[self.mockOtherObserver verify];
+    
+	[[self.mockObserver1 expect] testMessageWithNoParameters];
+	
+	[self.testObject sendTestMessageWithNoParameters];
+	
+	[self.mockObserver1 verify];
+}
+
+- (void)testWhenMultipleSelectorsFromDifferentProtocolsAreRegisteredThenMessagesAreCalledOnThem {
+    id mockObserver1 = [OCMockObject mockForProtocol:@protocol(ESCObservableTestForwardingSelectors)];
+    id mockObserver2 = [OCMockObject mockForProtocol:@protocol(ESCObservableTestForwardingSelectors)];
+    
+    [self.testObject escRegisterObserverProtocol:@protocol(ESCObservableTestOtherObserver)];
+    
+    [self.testObject escAddObserver:mockObserver1 forSelector:@selector(testOptionalMessageWithNoParameters) forwardingToSelector:@selector(forwardedMessage)];
+    [self.testObject escAddObserver:mockObserver2 forSelector:@selector(testMessageOnOtherObserverProtocol) forwardingToSelector:@selector(forwardedMessage)];
+    
+	[[mockObserver1 expect] forwardedMessage];
+	
+	[self.testObject sendTestOptionalMessageWithNoParameters];
+
+    [mockObserver1 verify];
+
+    [[mockObserver2 expect] forwardedMessage];
+
+    [self.testObject sendTestMessageOnOtherObserverProtocol];
+
+    [mockObserver2 verify];
 }
 
 - (void)testOtherMethodIsNotCalledOnObserver {
