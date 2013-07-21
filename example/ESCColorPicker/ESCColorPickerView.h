@@ -1,0 +1,16 @@
+#import <UIKit/UIKit.h>
+#import <ESCObservable/ESCObservable.h>
+
+@protocol ESCColorPickerViewObserver
+
+- (void)hueDidChange:(CGFloat)hue;
+- (void)saturationDidChange:(CGFloat)saturation;
+- (void)brightnessDidChange:(CGFloat)brightness;
+
+@end
+
+@interface ESCColorPickerView : UIView<ESCObservable>
+
+- (void)setHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness;
+
+@end
