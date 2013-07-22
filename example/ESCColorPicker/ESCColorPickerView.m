@@ -17,6 +17,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+		self.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+		
 		[self escRegisterObserverProtocol:@protocol(ESCColorPickerViewObserver)];
 		
 		self.hueWheel = [[ESCHueWheel alloc] init];
@@ -31,8 +33,8 @@
 		[self.brightnessSlider escAddObserver:self forSelector:@selector(sliderValueDidChange:) forwardingToSelector:@selector(brightnessDidChange:)];
 		[self addSubview:self.brightnessSlider];
 		
-		self.colorView = [[UIView alloc] init];
-		[self addSubview:self.colorView];
+		//self.colorView = [[UIView alloc] init];
+		//[self addSubview:self.colorView];
     }
     return self;
 }
@@ -41,12 +43,16 @@
 	[super layoutSubviews];
 	
 	CGRect contentRect = CGRectInset(self.bounds, PADDING, PADDING);
+	CGFloat sliderHeight = 40.0;
+	
+	self.brightnessSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(contentRect) - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
+	self.saturationSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(self.brightnessSlider.frame) - PADDING - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
+	
 	
 	self.colorView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(contentRect), CGRectGetWidth(self.bounds), 80.0);
 	
-	self.hueWheel.frame = CGRectMake(CGRectGetMinX(contentRect) + 10.0, CGRectGetMaxY(self.colorView.frame) + PADDING, CGRectGetWidth(contentRect) - 20.0, CGRectGetWidth(contentRect) - 20.0);
-	self.saturationSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(self.hueWheel.frame) + PADDING, CGRectGetWidth(contentRect), 40.0);
-	self.brightnessSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(self.saturationSlider.frame) + PADDING, CGRectGetWidth(contentRect), 40.0);
+	CGFloat hueWheelSide = CGRectGetWidth(contentRect) - 40.0;
+	self.hueWheel.frame = CGRectMake(CGRectGetMidX(contentRect) - hueWheelSide / 2.0, CGRectGetMinY(self.saturationSlider.frame) - PADDING - hueWheelSide, hueWheelSide, hueWheelSide);
 }
 
 - (void)saturationDidChange:(CGFloat)saturation {
@@ -72,6 +78,17 @@
 	
 	self.colorView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
 	
+	[self.hueWheel setHue:hue saturation:saturation brightness:brightness];
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+	UIView *hitView = [super hitTest:point withEvent:event];
+	if (CGRectContainsPoint(CGRectInset(self.saturationSlider.frame, -20.0, -5.0), point)) {
+		hitView = self.saturationSlider;
+	} else if (CGRectContainsPoint(CGRectInset(self.brightnessSlider.frame, -20.0, -5.0), point)) {
+		hitView = self.brightnessSlider;
+	}
+	return hitView;
 }
 
 @end

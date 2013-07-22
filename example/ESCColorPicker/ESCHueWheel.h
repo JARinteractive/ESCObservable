@@ -9,4 +9,6 @@
 
 @interface ESCHueWheel : UIView<ESCObservable>
 
+- (void)setHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness;
+
 @end

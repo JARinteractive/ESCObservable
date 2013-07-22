@@ -40,7 +40,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
 	CGFloat touchLocationOnThumb = [touch locationInView:self.thumb].x;
-	return touchLocationOnThumb > -20.0 && touchLocationOnThumb < CGRectGetMaxX(self.thumb.bounds) + 20.0;
+	return touchLocationOnThumb > -40.0 && touchLocationOnThumb < CGRectGetMaxX(self.thumb.bounds) + 40.0;
 }
 
 - (void)layoutSubviews {

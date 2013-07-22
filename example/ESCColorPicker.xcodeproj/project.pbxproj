@@ -267,6 +267,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Escappe;
 				TargetAttributes = {
+					4DD5C9D01794EA3200BB1615 = {
+						DevelopmentTeam = CAFGS5263J;
+					};
 					4DD5C9EB1794EA3200BB1615 = {
 						TestTargetID = 4DD5C9D01794EA3200BB1615;
 					};
@@ -408,7 +411,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Rantanen (5Z3434WNR8)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -429,6 +432,7 @@
 					"-all_load",
 					"-ObjC",
 				);
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EBE838DE-CFC8-4C79-9DC4-FEED8E294C77";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -473,7 +477,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCColorPicker/ESCColorPicker-Prefix.pch";
 				INFOPLIST_FILE = "ESCColorPicker/ESCColorPicker-Info.plist";
@@ -488,7 +491,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCColorPicker/ESCColorPicker-Prefix.pch";
 				INFOPLIST_FILE = "ESCColorPicker/ESCColorPicker-Info.plist";
