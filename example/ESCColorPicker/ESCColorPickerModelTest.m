@@ -54,4 +54,18 @@
 	[self.mockObserver verify];
 }
 
+- (void)testModelSendsDescriptionEventWhenColorChanges {
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"H", @"S", @"B"] values:@[@"0.500", @"0.300", @"0.400"]];
+	self.testObject.hue = 0.5;
+	[self.mockObserver verify];
+	
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"H", @"S", @"B"] values:@[@"0.500", @"0.600", @"0.400"]];
+	self.testObject.saturation = 0.6;
+	[self.mockObserver verify];
+	
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"H", @"S", @"B"] values:@[@"0.500", @"0.600", @"0.129"]];
+	self.testObject.brightness = 0.129;
+	[self.mockObserver verify];
+}
+
 @end

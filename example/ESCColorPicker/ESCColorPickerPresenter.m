@@ -18,6 +18,7 @@
 		[self.view escAddObserver:self];
 		
 		[self colorDidChange];
+		[self.view setColorDescriptionKeys:self.model.colorDescriptionKeys values:self.model.colorDescriptionValues];
     }
     return self;
 }
@@ -38,6 +39,10 @@
 
 - (void)brightnessDidChange:(CGFloat)brightness {
 	self.model.brightness = brightness;
+}
+
+- (void)colorDescriptionDidChangeKeys:(NSArray *)keys values:(NSArray *)values {
+	[self.view setColorDescriptionKeys:keys values:values];
 }
 
 @end

@@ -12,5 +12,6 @@
 @interface ESCColorPickerView : UIView<ESCObservable>
 
 - (void)setHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness;
+- (void)setColorDescriptionKeys:(NSArray *)keys values:(NSArray *)values;
 
 @end

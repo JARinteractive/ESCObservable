@@ -30,12 +30,17 @@
 	CGFloat expectedHue = 0.41;
 	CGFloat expectedSaturation = 0.29;
 	CGFloat expectedBrightness = 0.53;
+	NSArray *expectedKeys = @[@"key1"];
+	NSArray *expectedValues = @[@"stringValue"];
 	id mockView = [OCMockObject niceMockForClass:[ESCColorPickerView class]];
 	id mockModel = [OCMockObject niceMockForClass:[ESCColorPickerModel class]];
 	[[[mockModel stub] andReturnValue:@(expectedHue)] hue];
 	[[[mockModel stub] andReturnValue:@(expectedSaturation)] saturation];
 	[[[mockModel stub] andReturnValue:@(expectedBrightness)] brightness];
 	[[mockView expect] setHue:expectedHue saturation:expectedSaturation brightness:expectedBrightness];
+	[[[mockModel stub] andReturn:expectedKeys] colorDescriptionKeys];
+	[[[mockModel stub] andReturn:expectedValues] colorDescriptionValues];
+	[[mockView expect] setColorDescriptionKeys:expectedKeys values:expectedValues];
 	
 	(void)[[ESCColorPickerPresenter alloc] initWithView:mockView model:mockModel];
 	
@@ -81,6 +86,16 @@
 	[[self.mockView escNotifier] brightnessDidChange:expectedBrightness];
 	
 	[self.mockModel verify];
+}
+
+- (void)testWhenDescriptionChangeEventFiresThenDescriptionKeysAndValuesAreSetOnView {
+	NSArray *expectedKeys = @[@"key1", @"key2"];
+	NSArray *expectedValues = @[@"5.0", @"stringValue"];
+	[[self.mockView expect] setColorDescriptionKeys:expectedKeys values:expectedValues];
+	
+	[[self.mockModel escNotifier] colorDescriptionDidChangeKeys:expectedKeys values:expectedValues];
+	
+	[self.mockView verify];
 }
 
 @end

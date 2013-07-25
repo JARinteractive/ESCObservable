@@ -6,10 +6,10 @@
 
 @interface ESCColorPickerView()<ESCObservableInternal>
 
-@property (nonatomic) UIView *colorView;
 @property (nonatomic) ESCHueWheel *hueWheel;
 @property (nonatomic) ESCGradientSlider *saturationSlider;
 @property (nonatomic) ESCGradientSlider *brightnessSlider;
+@property (nonatomic) UILabel *colorLabel;
 
 @end
 
@@ -33,8 +33,10 @@
 		[self.brightnessSlider escAddObserver:self forSelector:@selector(sliderValueDidChange:) forwardingToSelector:@selector(brightnessDidChange:)];
 		[self addSubview:self.brightnessSlider];
 		
-		//self.colorView = [[UIView alloc] init];
-		//[self addSubview:self.colorView];
+		self.colorLabel = [[UILabel alloc] init];
+		self.colorLabel.backgroundColor = [UIColor clearColor];
+		self.colorLabel.textAlignment = NSTextAlignmentCenter;
+		[self addSubview:self.colorLabel];
     }
     return self;
 }
@@ -48,11 +50,10 @@
 	self.brightnessSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(contentRect) - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
 	self.saturationSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(self.brightnessSlider.frame) - PADDING - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
 	
-	
-	self.colorView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(contentRect), CGRectGetWidth(self.bounds), 80.0);
-	
 	CGFloat hueWheelSide = CGRectGetWidth(contentRect) - 40.0;
 	self.hueWheel.frame = CGRectMake(CGRectGetMidX(contentRect) - hueWheelSide / 2.0, CGRectGetMinY(self.saturationSlider.frame) - PADDING - hueWheelSide, hueWheelSide, hueWheelSide);
+	
+	self.colorLabel.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(contentRect), CGRectGetWidth(contentRect), CGRectGetMinY(self.hueWheel.frame) - CGRectGetMinY(contentRect));
 }
 
 - (void)saturationDidChange:(CGFloat)saturation {
@@ -76,8 +77,6 @@
 	[self.brightnessSlider setEndColor:[UIColor colorWithHue:hue saturation:saturation brightness:1.0 alpha:1.0]];
 	[self.brightnessSlider setSliderValue:brightness];
 	
-	self.colorView.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
-	
 	[self.hueWheel setHue:hue saturation:saturation brightness:brightness];
 }
 
@@ -89,6 +88,24 @@
 		hitView = self.brightnessSlider;
 	}
 	return hitView;
+}
+
+- (void)setColorDescriptionKeys:(NSArray *)keys values:(NSArray *)values {
+	NSMutableAttributedString *colorString = [[NSMutableAttributedString alloc] init];
+	
+	NSDictionary *keyAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:25.0], NSForegroundColorAttributeName : [UIColor colorWithWhite:0.5 alpha:1.0]};
+	NSDictionary *valueAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:25.0], NSForegroundColorAttributeName : [UIColor colorWithWhite:0.95 alpha:1.0]};
+	
+	NSInteger i = 0;
+	for (NSString *key in keys) {
+		NSAttributedString *keyString = [[NSAttributedString alloc] initWithString:key attributes:keyAttributes];
+		[colorString appendAttributedString:keyString];
+		NSAttributedString *valueString = [[NSAttributedString alloc] initWithString:[values[i] description] attributes:valueAttributes];
+		[colorString appendAttributedString:valueString];
+		[colorString appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+		i++;
+	}
+	self.colorLabel.attributedText = colorString;
 }
 
 @end

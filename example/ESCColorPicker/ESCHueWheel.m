@@ -30,15 +30,12 @@
 		NSMutableArray *colorSwatchViews = [NSMutableArray arrayWithCapacity:numberOfSwatches];
 		for (NSInteger i = 0; i < numberOfSwatches; i++) {
 			UIView *colorSwatchView = [[UIView alloc] init];
-			colorSwatchView.backgroundColor = [UIColor orangeColor];
-			//colorSwatchView.layer.edgeAntialiasingMask = kCALayerBottomEdge | kCALayerLeftEdge | kCALayerRightEdge | kCALayerTopEdge;
 			colorSwatchView.layer.shouldRasterize = YES;
 			colorSwatchView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-			[self.wheel addSubview:colorSwatchView];
 			[colorSwatchViews addObject:colorSwatchView];
+			[self.wheel addSubview:colorSwatchView];
 		}
 		self.colorSwatchViews = colorSwatchViews;
-		
 		
 		self.wheelCenterBorder = [[UIView alloc] init];
 		self.wheelCenterBorder.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
