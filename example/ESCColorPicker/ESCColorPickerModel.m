@@ -34,12 +34,42 @@
 	[self.escNotifier colorDidChange];
 }
 
+- (void)setDescriptionFormat:(ESCColorPickerModelDescriptionFormat)descriptionFormat {
+	_descriptionFormat = descriptionFormat;
+	[self updateDescription];
+}
+
+- (NSString *)formattedFloat:(CGFloat)floatToFormat {
+	return [NSString stringWithFormat:@"%.3f", floatToFormat];
+}
+
 - (void)updateDescription {
-	self.colorDescriptionKeys = @[@"H", @"S", @"B"];
-	NSString *formatString = @"%.3f";
-	self.colorDescriptionValues = @[[NSString stringWithFormat:formatString, self.hue],
-									[NSString stringWithFormat:formatString, self.saturation],
-									[NSString stringWithFormat:formatString, self.brightness]];
+	if (self.descriptionFormat == ESCColorPickerModelDescriptionFormatHSB) {
+		self.colorDescriptionKeys = @[@"H", @"S", @"B"];
+		
+		NSString *formatString = @"%.3f";
+		self.colorDescriptionValues = @[[NSString stringWithFormat:formatString, self.hue],
+										[NSString stringWithFormat:formatString, self.saturation],
+										[NSString stringWithFormat:formatString, self.brightness]];
+	} else if (self.descriptionFormat == ESCColorPickerModelDescriptionFormatRGB) {
+		self.colorDescriptionKeys = @[@"R", @"G", @"B"];
+		
+		NSString *formatString = @"%.3f";
+		UIColor *hsbColor = [UIColor colorWithHue:self.hue saturation:self.saturation brightness:self.brightness alpha:1.0];
+		CGFloat red, green, blue;
+		[hsbColor getRed:&red green:&green blue:&blue alpha:NULL];
+		self.colorDescriptionValues = @[[NSString stringWithFormat:formatString, red],
+										[NSString stringWithFormat:formatString, green],
+										[NSString stringWithFormat:formatString, blue]];
+	} else if (self.descriptionFormat == ESCColorPickerModelDescriptionFormatRGBHex) {
+		self.colorDescriptionKeys = @[@"#"];
+		
+		UIColor *hsbColor = [UIColor colorWithHue:self.hue saturation:self.saturation brightness:self.brightness alpha:1.0];
+		CGFloat red, green, blue;
+		[hsbColor getRed:&red green:&green blue:&blue alpha:NULL];
+		self.colorDescriptionValues = @[[NSString stringWithFormat:@"%02X%02X%02X", (NSUInteger)(red * 255), (NSUInteger)(green * 255), (NSUInteger)(blue * 255)]];
+	}
+	
 	[self.escNotifier colorDescriptionDidChangeKeys:self.colorDescriptionKeys values:self.colorDescriptionValues];
 }
 

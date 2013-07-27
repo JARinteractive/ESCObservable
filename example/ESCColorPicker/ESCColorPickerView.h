@@ -6,6 +6,7 @@
 - (void)hueDidChange:(CGFloat)hue;
 - (void)saturationDidChange:(CGFloat)saturation;
 - (void)brightnessDidChange:(CGFloat)brightness;
+- (void)colorDescriptionTapped;
 
 @end
 

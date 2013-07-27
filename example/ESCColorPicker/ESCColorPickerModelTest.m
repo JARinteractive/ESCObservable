@@ -68,4 +68,18 @@
 	[self.mockObserver verify];
 }
 
+- (void)testModelSendsDescriptionEventWhenColorFormatChanges {
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"R", @"G", @"B"] values:@[@"0.376", @"0.400", @"0.280"]];
+	self.testObject.descriptionFormat = ESCColorPickerModelDescriptionFormatRGB;
+	[self.mockObserver verify];
+	
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"#"] values:@[@"5F6647"]];
+	self.testObject.descriptionFormat = ESCColorPickerModelDescriptionFormatRGBHex;
+	[self.mockObserver verify];
+	
+	[[self.mockObserver expect] colorDescriptionDidChangeKeys:@[@"H", @"S", @"B"] values:@[@"0.200", @"0.300", @"0.400"]];
+	self.testObject.descriptionFormat = ESCColorPickerModelDescriptionFormatHSB;
+	[self.mockObserver verify];
+}
+
 @end

@@ -98,4 +98,26 @@
 	[self.mockView verify];
 }
 
+- (void)testWhenColorDescriptionTappedThenDescriptionFormatIsChanged {
+	[[[self.mockModel expect] andReturnValue:@(0)] descriptionFormat];
+	[[self.mockModel expect] setDescriptionFormat:ESCColorPickerModelDescriptionFormatRGB];
+	[[self.mockView escNotifier] colorDescriptionTapped];
+	[self.mockModel verify];
+	
+	[[[self.mockModel expect] andReturnValue:@(1)] descriptionFormat];
+	[[self.mockModel expect] setDescriptionFormat:ESCColorPickerModelDescriptionFormatRGBHex];
+	[[self.mockView escNotifier] colorDescriptionTapped];
+	[self.mockModel verify];
+	
+	[[[self.mockModel expect] andReturnValue:@(2)] descriptionFormat];
+	[[self.mockModel expect] setDescriptionFormat:ESCColorPickerModelDescriptionFormatHSB];
+	[[self.mockView escNotifier] colorDescriptionTapped];
+	[self.mockModel verify];
+	
+	[[[self.mockModel expect] andReturnValue:@(0)] descriptionFormat];
+	[[self.mockModel expect] setDescriptionFormat:ESCColorPickerModelDescriptionFormatRGB];
+	[[self.mockView escNotifier] colorDescriptionTapped];
+	[self.mockModel verify];
+}
+
 @end

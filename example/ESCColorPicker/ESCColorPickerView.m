@@ -10,6 +10,7 @@
 @property (nonatomic) ESCGradientSlider *saturationSlider;
 @property (nonatomic) ESCGradientSlider *brightnessSlider;
 @property (nonatomic) UILabel *colorLabel;
+@property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -17,9 +18,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
-		
 		[self escRegisterObserverProtocol:@protocol(ESCColorPickerViewObserver)];
+		
+		self.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
 		
 		self.hueWheel = [[ESCHueWheel alloc] init];
 		[self.hueWheel escAddObserver:self forSelector:@selector(hueDidChange:)];
@@ -33,27 +34,22 @@
 		[self.brightnessSlider escAddObserver:self forSelector:@selector(sliderValueDidChange:) forwardingToSelector:@selector(brightnessDidChange:)];
 		[self addSubview:self.brightnessSlider];
 		
+		self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(colorLabelTapped:)];
+		
 		self.colorLabel = [[UILabel alloc] init];
 		self.colorLabel.backgroundColor = [UIColor clearColor];
 		self.colorLabel.textAlignment = NSTextAlignmentCenter;
+		self.colorLabel.userInteractionEnabled = YES;
+		[self.colorLabel addGestureRecognizer:self.tapGestureRecognizer];
 		[self addSubview:self.colorLabel];
     }
     return self;
 }
 
-- (void)layoutSubviews {
-	[super layoutSubviews];
-	
-	CGRect contentRect = CGRectInset(self.bounds, PADDING, PADDING);
-	CGFloat sliderHeight = 40.0;
-	
-	self.brightnessSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(contentRect) - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
-	self.saturationSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(self.brightnessSlider.frame) - PADDING - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
-	
-	CGFloat hueWheelSide = CGRectGetWidth(contentRect) - 40.0;
-	self.hueWheel.frame = CGRectMake(CGRectGetMidX(contentRect) - hueWheelSide / 2.0, CGRectGetMinY(self.saturationSlider.frame) - PADDING - hueWheelSide, hueWheelSide, hueWheelSide);
-	
-	self.colorLabel.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(contentRect), CGRectGetWidth(contentRect), CGRectGetMinY(self.hueWheel.frame) - CGRectGetMinY(contentRect));
+- (void)colorLabelTapped:(UITapGestureRecognizer *)gestureRecognizer {
+	if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+		[self.escNotifier colorDescriptionTapped];
+	}
 }
 
 - (void)saturationDidChange:(CGFloat)saturation {
@@ -80,16 +76,6 @@
 	[self.hueWheel setHue:hue saturation:saturation brightness:brightness];
 }
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-	UIView *hitView = [super hitTest:point withEvent:event];
-	if (CGRectContainsPoint(CGRectInset(self.saturationSlider.frame, -20.0, -5.0), point)) {
-		hitView = self.saturationSlider;
-	} else if (CGRectContainsPoint(CGRectInset(self.brightnessSlider.frame, -20.0, -5.0), point)) {
-		hitView = self.brightnessSlider;
-	}
-	return hitView;
-}
-
 - (void)setColorDescriptionKeys:(NSArray *)keys values:(NSArray *)values {
 	NSMutableAttributedString *colorString = [[NSMutableAttributedString alloc] init];
 	
@@ -106,6 +92,32 @@
 		i++;
 	}
 	self.colorLabel.attributedText = colorString;
+}
+
+// Increase touchable area of sliders
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+	UIView *hitView = [super hitTest:point withEvent:event];
+	if (CGRectContainsPoint(CGRectInset(self.saturationSlider.frame, -20.0, -5.0), point)) {
+		hitView = self.saturationSlider;
+	} else if (CGRectContainsPoint(CGRectInset(self.brightnessSlider.frame, -20.0, -5.0), point)) {
+		hitView = self.brightnessSlider;
+	}
+	return hitView;
+}
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	
+	CGRect contentRect = CGRectInset(self.bounds, PADDING, PADDING);
+	CGFloat sliderHeight = 40.0;
+	
+	self.brightnessSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMaxY(contentRect) - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
+	self.saturationSlider.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(self.brightnessSlider.frame) - PADDING - sliderHeight, CGRectGetWidth(contentRect), sliderHeight);
+	
+	CGFloat hueWheelSide = CGRectGetWidth(contentRect) - 40.0;
+	self.hueWheel.frame = CGRectMake(CGRectGetMidX(contentRect) - hueWheelSide / 2.0, CGRectGetMinY(self.saturationSlider.frame) - PADDING - hueWheelSide, hueWheelSide, hueWheelSide);
+	
+	self.colorLabel.frame = CGRectMake(CGRectGetMinX(contentRect), CGRectGetMinY(contentRect), CGRectGetWidth(contentRect), CGRectGetMinY(self.hueWheel.frame) - CGRectGetMinY(contentRect));
 }
 
 @end

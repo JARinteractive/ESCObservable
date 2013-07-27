@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D22504317A39814007CABA0 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504117A39814007CABA0 /* Default-568h.png */; };
+		4D22504417A39814007CABA0 /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504117A39814007CABA0 /* Default-568h.png */; };
+		4D22504517A39814007CABA0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504217A39814007CABA0 /* Default-568h@2x.png */; };
+		4D22504617A39814007CABA0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504217A39814007CABA0 /* Default-568h@2x.png */; };
+		4D22504917A39875007CABA0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504717A39875007CABA0 /* Default.png */; };
+		4D22504A17A39875007CABA0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504717A39875007CABA0 /* Default.png */; };
+		4D22504B17A39875007CABA0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504817A39875007CABA0 /* Default@2x.png */; };
+		4D22504C17A39875007CABA0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D22504817A39875007CABA0 /* Default@2x.png */; };
 		4D8A6E571794F74A00C4335D /* ESCGradientSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A6E561794F74A00C4335D /* ESCGradientSlider.m */; };
 		4D8A6E581794F74A00C4335D /* ESCGradientSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A6E561794F74A00C4335D /* ESCGradientSlider.m */; };
 		4DD5C9D51794EA3200BB1615 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD5C9D41794EA3200BB1615 /* Foundation.framework */; };
@@ -70,6 +78,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D22504117A39814007CABA0 /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		4D22504217A39814007CABA0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4D22504717A39875007CABA0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4D22504817A39875007CABA0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4D8A6E551794F74A00C4335D /* ESCGradientSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCGradientSlider.h; sourceTree = "<group>"; };
 		4D8A6E561794F74A00C4335D /* ESCGradientSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESCGradientSlider.m; sourceTree = "<group>"; };
 		4DD5C9D11794EA3200BB1615 /* ESCColorPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESCColorPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +143,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D22504D17A39923007CABA0 /* custom controls */ = {
+			isa = PBXGroup;
+			children = (
+				4D8A6E551794F74A00C4335D /* ESCGradientSlider.h */,
+				4D8A6E561794F74A00C4335D /* ESCGradientSlider.m */,
+				4DD84E901798E2F4006B609D /* ESCHueWheel.h */,
+				4DD84E911798E2F4006B609D /* ESCHueWheel.m */,
+				4DD84E941798EB25006B609D /* ESCColorControlThumb.h */,
+				4DD84E951798EB25006B609D /* ESCColorControlThumb.m */,
+			);
+			name = "custom controls";
+			sourceTree = "<group>";
+		};
 		4DD5C9C81794EA3200BB1615 = {
 			isa = PBXGroup;
 			children = (
@@ -166,21 +191,16 @@
 		4DD5C9DA1794EA3200BB1615 /* ESCColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				4D22504D17A39923007CABA0 /* custom controls */,
 				4DD5CA1A1794F56000BB1615 /* lifecycle */,
-				4DD5CA161794F47F00BB1615 /* ESCColorPickerView.h */,
-				4DD5CA171794F47F00BB1615 /* ESCColorPickerView.m */,
-				4D8A6E551794F74A00C4335D /* ESCGradientSlider.h */,
-				4D8A6E561794F74A00C4335D /* ESCGradientSlider.m */,
-				4DD84E3A17979B6E006B609D /* ESCColorPickerPresenter.h */,
-				4DD84E3B17979B6E006B609D /* ESCColorPickerPresenter.m */,
-				4DD84EB1179B7985006B609D /* ESCColorPickerPresenterTest.m */,
 				4DD84E4017979B91006B609D /* ESCColorPickerModel.h */,
 				4DD84E4117979B91006B609D /* ESCColorPickerModel.m */,
 				4DD84EAB179B72BE006B609D /* ESCColorPickerModelTest.m */,
-				4DD84E901798E2F4006B609D /* ESCHueWheel.h */,
-				4DD84E911798E2F4006B609D /* ESCHueWheel.m */,
-				4DD84E941798EB25006B609D /* ESCColorControlThumb.h */,
-				4DD84E951798EB25006B609D /* ESCColorControlThumb.m */,
+				4DD5CA161794F47F00BB1615 /* ESCColorPickerView.h */,
+				4DD5CA171794F47F00BB1615 /* ESCColorPickerView.m */,
+				4DD84E3A17979B6E006B609D /* ESCColorPickerPresenter.h */,
+				4DD84E3B17979B6E006B609D /* ESCColorPickerPresenter.m */,
+				4DD84EB1179B7985006B609D /* ESCColorPickerPresenterTest.m */,
 				4DD5C9E61794EA3200BB1615 /* Images.xcassets */,
 				4DD5C9DB1794EA3200BB1615 /* Supporting Files */,
 			);
@@ -190,6 +210,10 @@
 		4DD5C9DB1794EA3200BB1615 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D22504717A39875007CABA0 /* Default.png */,
+				4D22504817A39875007CABA0 /* Default@2x.png */,
+				4D22504117A39814007CABA0 /* Default-568h.png */,
+				4D22504217A39814007CABA0 /* Default-568h@2x.png */,
 				4DD5C9DC1794EA3200BB1615 /* ESCColorPicker-Info.plist */,
 				4DD5C9DD1794EA3200BB1615 /* InfoPlist.strings */,
 				4DD5C9E01794EA3200BB1615 /* main.m */,
@@ -321,8 +345,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D22504B17A39875007CABA0 /* Default@2x.png in Resources */,
+				4D22504317A39814007CABA0 /* Default-568h.png in Resources */,
 				4DD5C9DF1794EA3200BB1615 /* InfoPlist.strings in Resources */,
 				4DD5C9E71794EA3200BB1615 /* Images.xcassets in Resources */,
+				4D22504517A39814007CABA0 /* Default-568h@2x.png in Resources */,
+				4D22504917A39875007CABA0 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +358,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D22504C17A39875007CABA0 /* Default@2x.png in Resources */,
+				4D22504417A39814007CABA0 /* Default-568h.png in Resources */,
+				4D22504A17A39875007CABA0 /* Default.png in Resources */,
+				4D22504617A39814007CABA0 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +508,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCColorPicker/ESCColorPicker-Prefix.pch";
 				INFOPLIST_FILE = "ESCColorPicker/ESCColorPicker-Info.plist";
@@ -490,7 +521,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ESCColorPicker/ESCColorPicker-Prefix.pch";
 				INFOPLIST_FILE = "ESCColorPicker/ESCColorPicker-Info.plist";

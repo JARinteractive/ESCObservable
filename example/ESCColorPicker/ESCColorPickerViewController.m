@@ -11,16 +11,9 @@
 
 @implementation ESCColorPickerViewController
 
-- (id)init {
-    if (self = [super init]) {
-    }
-    return self;
-}
-
 - (void)loadView {
     [super loadView];
-	self.view.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
-	
+	self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
 	
 	CGRect contentRect = self.view.bounds;
 	if ([[[UIDevice currentDevice] systemVersion] integerValue] >= 7) {
@@ -42,6 +35,10 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

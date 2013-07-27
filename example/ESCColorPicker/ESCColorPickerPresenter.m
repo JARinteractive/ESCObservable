@@ -45,4 +45,8 @@
 	[self.view setColorDescriptionKeys:keys values:values];
 }
 
+- (void)colorDescriptionTapped {
+	self.model.descriptionFormat = (self.model.descriptionFormat + 1) % 3;
+}
+
 @end
