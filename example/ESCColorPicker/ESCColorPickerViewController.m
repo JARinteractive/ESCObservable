@@ -29,10 +29,6 @@
 	self.presenter = [[ESCColorPickerPresenter alloc] initWithView:colorPickerView model:colorPickerModel];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return NO;
 }

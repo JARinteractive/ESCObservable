@@ -122,7 +122,7 @@
 	
 	[self.testObject sendTestMessageWithNoParameters];
 	
-	XCTAssertEquals(callCount, 1, @"");
+	XCTAssertEqual(callCount, 1, @"");
 }
 
 - (void)testMessageWithoutParametersIsCalledOnObserverMultipleTimes {
