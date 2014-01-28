@@ -60,4 +60,5 @@ void escMakeClassObservable(Class aClass) {
 __attribute__((constructor)) static void escObservableRuntimeSetup() {
 	escMakeClassObservable([NSObject class]);
 	escMakeClassObservable(objc_getClass("OCMockObject"));
+	escMakeClassObservable(objc_getClass("SBLMockObject"));
 }
