@@ -27,12 +27,29 @@
 	return wrapper;
 }
 
+- (BOOL)isEqual:(ESCObserverWeakWrapper *)object
+{
+    BOOL equalTargets = [self.target isEqual:object.target];
+    BOOL equalSelectors = YES;
+    BOOL equalForwardToSelectors = YES;
+    
+    if (self.selector && object.selector) {
+        equalSelectors = [NSStringFromSelector(self.selector) isEqualToString:NSStringFromSelector(object.selector)];
+    }
+    
+    if (self.forwardToSelector && object.forwardToSelector) {
+        equalForwardToSelectors = [NSStringFromSelector(self.forwardToSelector) isEqualToString:NSStringFromSelector(object.forwardToSelector)];
+    }
+    
+    return equalTargets && equalSelectors && equalForwardToSelectors;
+}
+
 @end
 
 @interface ESCObserversProxy()
 
-@property (nonatomic) NSArray *escObservers;
-@property (nonatomic) NSArray *escObserverProtocols;
+@property (nonatomic) NSSet *escObservers;
+@property (nonatomic) NSSet *escObserverProtocols;
 
 @end
 
@@ -40,9 +57,9 @@
 
 - (void)escRegisterObserverProtocol:(Protocol *)observerProtocol {
 	if (self.escObserverProtocols) {
-		self.escObserverProtocols = [self.escObserverProtocols arrayByAddingObject:observerProtocol];
+		self.escObserverProtocols = [self.escObserverProtocols setByAddingObject:observerProtocol];
 	} else {
-		self.escObserverProtocols = @[observerProtocol];
+		self.escObserverProtocols = [NSSet setWithObject:observerProtocol];
 	}
 }
 
@@ -60,14 +77,14 @@
 
 - (void)escAddWrappedObserver:(ESCObserverWeakWrapper *)wrappedObserver {
 	if (!self.escObservers) {
-		self.escObservers = @[wrappedObserver];
+		self.escObservers = [NSSet setWithObject:wrappedObserver];
 	} else {
-		self.escObservers = [self.escObservers arrayByAddingObject:wrappedObserver];
+		self.escObservers = [self.escObservers setByAddingObject:wrappedObserver];
 	}
 }
 
 - (void)escRemoveObserver:(id)observer {
-	NSMutableArray *observers = [NSMutableArray arrayWithArray:self.escObservers];
+	NSMutableSet *observers = [NSMutableSet setWithSet:self.escObservers];
 	for (ESCObserverWeakWrapper *observerWrapper in self.escObservers) {
 		if (observerWrapper.target == observer) {
 			[observers removeObject:observerWrapper];
@@ -77,7 +94,7 @@
 }
 
 - (void)escRemoveObserver:(id)observer forSelector:(SEL)selector forwardingToSelector:(SEL)forwardSelector {
-	NSMutableArray *observers = [NSMutableArray arrayWithArray:self.escObservers];
+	NSMutableSet *observers = [NSMutableSet setWithSet:self.escObservers];
 	for (ESCObserverWeakWrapper *observerWrapper in self.escObservers) {
 		if (observerWrapper.target == observer && sel_isEqual(observerWrapper.selector, selector) && sel_isEqual(observerWrapper.forwardToSelector, forwardSelector)) {
 			[observers removeObject:observerWrapper];
@@ -136,10 +153,10 @@
 }
 
 - (void)cleanUpObservers {
-	NSArray *validObservers = @[];
+	NSSet *validObservers = [NSSet set];
 	for (ESCObserverWeakWrapper *observer in self.escObservers) {
 		if (observer.target != nil) {
-			validObservers = [validObservers arrayByAddingObject:observer];
+			validObservers = [validObservers setByAddingObject:observer];
 		}
 	}
 	self.escObservers = validObservers;

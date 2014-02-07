@@ -390,4 +390,49 @@
 	[self.mockObserver1 verify];
 }
 
+- (void)testObserversOfTheSameTargetCannotBeAddedMoreThanOnce {
+    ESCTestObservable *testObject = [[ESCTestObservable alloc] init];
+    
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    [testObject escAddObserver:mockObserver];
+    [testObject escAddObserver:mockObserver];
+    
+    [[mockObserver expect] testMessageWithNoParameters];
+    [[mockObserver reject] testMessageWithNoParameters];
+    
+    [testObject sendTestMessageWithNoParameters];
+    
+    [mockObserver verify];
+}
+
+- (void)testObserversOfTheSameTargetAndSelectorCannotBeAddedMoreThanOnce {
+    ESCTestObservable *testObject = [[ESCTestObservable alloc] init];
+    
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters)];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters)];
+    
+    [[mockObserver expect] testMessageWithNoParameters];
+    [[mockObserver reject] testMessageWithNoParameters];
+    
+    [testObject sendTestMessageWithNoParameters];
+    
+    [mockObserver verify];
+}
+
+- (void)testObserversOfTheSameTargetAndSelectorAndForwardSelectorCannotBeAddedMoreThanOnce {
+    ESCTestObservable *testObject = [[ESCTestObservable alloc] init];
+    
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestForwardingSelectors)];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(forwardedMessage)];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(forwardedMessage)];
+    
+    [[mockObserver expect] forwardedMessage];
+    [[mockObserver reject] forwardedMessage];
+    
+    [testObject sendTestMessageWithNoParameters];
+    
+    [mockObserver verify];
+}
+
 @end
