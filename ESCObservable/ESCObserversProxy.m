@@ -30,8 +30,8 @@
 - (BOOL)isEqual:(ESCObserverWeakWrapper *)object
 {
     BOOL equalTargets = [self.target isEqual:object.target];
-    BOOL equalSelectors = YES;
-    BOOL equalForwardToSelectors = YES;
+    BOOL equalSelectors = !self.selector && !object.selector;
+    BOOL equalForwardToSelectors = !self.forwardToSelector && !object.forwardToSelector;
     
     if (self.selector && object.selector) {
         equalSelectors = [NSStringFromSelector(self.selector) isEqualToString:NSStringFromSelector(object.selector)];

@@ -435,4 +435,21 @@
     [mockObserver verify];
 }
 
+- (void)testMultipleObserversOfTheSameTargetWithVaryingAttributesCanBeSimultaneouslyAdded {
+    ESCTestObservable *testObject = [[ESCTestObservable alloc] init];
+    
+    id mockObserver = [OCMockObject niceMockForProtocol:@protocol(ESCObservableTestObserver)];
+    [testObject escAddObserver:mockObserver];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters)];
+    [testObject escAddObserver:mockObserver forSelector:@selector(testMessageWithNoParameters) forwardingToSelector:@selector(testOptionalMessageWithNoParameters)];
+    
+    [[mockObserver expect] testMessageWithNoParameters];
+    [[mockObserver expect] testMessageWithNoParameters];
+    [[mockObserver expect] testOptionalMessageWithNoParameters];
+    
+    [testObject sendTestMessageWithNoParameters];
+    
+    [mockObserver verify];
+}
+
 @end
