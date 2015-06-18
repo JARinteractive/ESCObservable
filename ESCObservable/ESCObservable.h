@@ -31,5 +31,5 @@ ESCSuppressIncompleteImplementationWarnings
 
 @end
 
-/// NSObject, OCMockObject, and all subclasses are already observable. Use this function to make other classes observable (such as a NSProxy subclass).
+/// NSObject, SBLMockObject, OCMockObject, and all subclasses are already observable. Use this function to make other classes observable (such as a NSProxy subclass).
 void escMakeClassObservable(Class aClass);

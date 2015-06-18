@@ -96,7 +96,7 @@
 }
 
 - (struct objc_method_description)descriptionForSelector:(SEL)selector {
-    struct objc_method_description description;
+	struct objc_method_description description = { NULL, NULL };
     for (Protocol *protocol in self.escObserverProtocols) {
         description = protocol_getMethodDescription(protocol, selector, NO, YES);
         if (description.name == NULL) {
